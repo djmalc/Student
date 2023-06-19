@@ -1,7 +1,7 @@
-package studentinfo;
+package sis.report;
 
 import junit.framework.TestCase;
-import java.util.*;
+import sis.studentinfo.*;
 
 public class RosterReporterTest extends TestCase {
 
@@ -13,6 +13,7 @@ public class RosterReporterTest extends TestCase {
         session.enroll(new Student("B"));
 
         String rosterReport = new RosterReporter(session).getReport();
+        //System.out.println(rosterReport);
         assertEquals(RosterReporter.ROSTER_REPORT_HEADER +
             "A" + RosterReporter.NEWLINE +
             "B" + RosterReporter.NEWLINE +

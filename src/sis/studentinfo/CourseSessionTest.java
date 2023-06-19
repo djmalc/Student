@@ -1,4 +1,4 @@
-package studentinfo;
+package sis.studentinfo;
 
 import junit.framework.TestCase;
 import java.util.*;

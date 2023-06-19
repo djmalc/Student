@@ -1,4 +1,4 @@
-package studentinfo;
+package sis.studentinfo;
 import java.util.*;
 
 /**
@@ -28,13 +28,13 @@ public class CourseSession {
         this.number = number;
     }
 
-    CourseSession(String department, String number, Date startDate) {
+    public CourseSession(String department, String number, Date startDate) {
         this.department = department;
         this.number = number;
         this.startDate = startDate;
     }
 
-    ArrayList<Student> getAllStudents() {
+    public ArrayList<Student> getAllStudents() {
         return students;
     }
     /**
@@ -65,7 +65,7 @@ public class CourseSession {
     }
 
 
-    void enroll(Student student) {
+    public void enroll(Student student) {
         students.add(student);
     }
 
