@@ -1,11 +1,14 @@
 package sis;
 
 import junit.framework.TestSuite;
+import sis.report.AllTestsReport;
+import sis.studentinfo.AllTestsStudentInfo;
+
 public class AllTests {
     public static TestSuite suite() {
         TestSuite suite = new TestSuite();
-        suite.addTest(sis.report.AllTests.suite());
-        suite.addTest(sis.studentinfo.AllTests.suite());
+        suite.addTest(AllTestsReport.suite());
+        suite.addTest(AllTestsStudentInfo.suite());
         return suite;
     }
 }
