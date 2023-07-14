@@ -1,12 +1,15 @@
 package sis.studentinfo;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.*;
-import junit.framework.*;
 
 
- public class DateUtilTest extends TestCase {
-    public void  testCreateDate() {
-        Date date = new DateUtil().createDate(2000, 1, 1);
+ public class DateUtilTest {
+    @Test
+	 public void  testCreateDate() {
+        Date date = DateUtil.createDate(2000, 1, 1);
         Calendar calendar = new GregorianCalendar();
         calendar.setTime(date);
         assertEquals(2000, calendar.get(Calendar.YEAR));

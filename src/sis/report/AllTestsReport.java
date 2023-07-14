@@ -1,10 +1,10 @@
 package sis.report;
 
-import junit.framework.TestSuite;
+import org.junit.platform.suite.api.SelectClasses;
+import org.junit.platform.suite.api.Suite;
+
+@Suite
+@SelectClasses({ RosterReporterTest.class, CourseReportTest.class, ReportCardTest.class })
 public class AllTestsReport {
-    public static TestSuite suite() {
-        TestSuite suite = new TestSuite();
-        suite.addTestSuite(RosterReporterTest.class);
-        return suite;
-    }
+
 }

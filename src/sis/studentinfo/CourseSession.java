@@ -4,72 +4,35 @@ import java.util.*;
 /**
  * Provides a representation of a single-semester
  * session of a specific university course
- * @author david j malcolm
+ * @author David J Malcolm
  */
-public class CourseSession {
-
-    private String department;
-    private String number;
-    private ArrayList<Student> students = new ArrayList<Student>();
-    private Date startDate;
-
-    CourseSession() {
+public class CourseSession extends Session {
+	private static int count;
+    
+    public static Session create(
+    	Course course,
+    	Date startDate) {
+    	incrementCount();
+    	return new CourseSession(course, startDate);
+    }
+     
+    protected CourseSession(Course course, Date startDate) {
+        super(course, startDate);
     }
 
-    /**
-     * Constructs a CourseSession starting on a specific date
-     * @param startDate the date on which the CourseSession begins
-     */
-    CourseSession(Date startDate) {
-        this.startDate = startDate;
+    static void resetCount() {
+    	count = 0;
     }
-    CourseSession(String department, String number) {
-        this.department = department;
-        this.number = number;
+    
+    private static void incrementCount() {
+    	++count;
     }
-
-    public CourseSession(String department, String number, Date startDate) {
-        this.department = department;
-        this.number = number;
-        this.startDate = startDate;
+    
+    static int getCount() {
+    	return count;
     }
-
-    public ArrayList<Student> getAllStudents() {
-        return students;
-    }
-    /**
-     *
-     * @return Date the last date of the course session
-     */
-    Date getEndDate() {
-        GregorianCalendar calendar = new GregorianCalendar();
-        calendar.setTime(startDate);
-        int numberOfDays = 16 * 7 -3;
-        calendar.add(calendar.DAY_OF_YEAR, numberOfDays);
-        return calendar.getTime();
-    }
-    String getDepartment() {
-        return department;
-    }
-
-    String getNumber() {
-        return number;
-    }
-
-    Date getStartDate() {
-        return startDate;
-    }
-
-    int getNumberOfStudents() {
-        return students.size();
-    }
-
-
-    public void enroll(Student student) {
-        students.add(student);
-    }
-
-    Student get(int index) {
-        return students.get(index);
+    
+    protected int getSessionLength() {
+    	return 16;
     }
 }

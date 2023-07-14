@@ -1,43 +1,39 @@
 package sis.studentinfo;
 
-import junit.framework.TestCase;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
 import java.util.*;
+import static sis.studentinfo.DateUtil.createDate;
 
-public class CourseSessionTest extends TestCase {
+public class CourseSessionTest extends SessionTest {
 
-    private CourseSession session;
-    private Date startDate;
-
-    public void setUp() {
-
-        startDate = new DateUtil().createDate(2003, 1, 6);
-        session = new CourseSession("ENGL", "101", startDate);
-    }
-    public void testCreate() {
-        assertEquals("ENGL", session.getDepartment());
-        assertEquals("101", session.getNumber());
-        assertEquals(0, session.getNumberOfStudents());
-        assertEquals(startDate, session.getStartDate());
+    protected Session createSession(Course course, Date date) {        
+    	return CourseSession.create(course,  date);
     }
 
-    public void testEnrollStudents() {
-        Student student1 = new Student("Cain DiVoe");
-        session.enroll(student1);
-        assertEquals(1, session.getNumberOfStudents());
-        assertEquals(student1, session.get(0));
-
-        Student student2 = new Student("Coralee DeVaughn");
-        session.enroll(student2);
-        assertEquals(2, session.getNumberOfStudents());
-        assertEquals(student1, session.get(0));
-        assertEquals(student2, session.get(1));
-
+    private Course createCourse() {
+    	return new Course("ENGL", "101");
+    }
+   
+    @Test
+    public void testCount() {
+    	//assertEquals(1, CourseSession.count());
+    	CourseSession.resetCount();
+    	createSession(createCourse(), new Date());
+    	assertEquals(1, CourseSession.getCount());
+    	createSession(createCourse(), new Date());
+    	assertEquals(2, CourseSession.getCount());
     }
 
+    @Test
     public void testCourseDates() {
-        Date sixteenWeeksOut = new DateUtil().createDate(2003, 4, 25);
+        Date startDate = DateUtil.createDate(2003,  1,  6);
+        Session session = createSession(createCourse(), startDate);
+    	Date sixteenWeeksOut = DateUtil.createDate(2003, 4, 25);
         assertEquals(sixteenWeeksOut, session.getEndDate());
     }
-
 
 }

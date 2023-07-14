@@ -8,9 +8,9 @@ public class RosterReporter {
             "Student" + NEWLINE + "-------" + NEWLINE;
     static final String ROSTER_REPORT_FOOTER =
             NEWLINE + "# students = ";
-    private CourseSession session;
+    private Session session;
 
-    RosterReporter(CourseSession session) {
+    RosterReporter(Session session) {
         this.session = session;
     }
 

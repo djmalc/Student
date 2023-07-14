@@ -1,13 +1,17 @@
 package sis.report;
 
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
 import sis.studentinfo.*;
 
-public class RosterReporterTest extends TestCase {
+public class RosterReporterTest {
 
-    public void testRosterReport()  {
-        CourseSession session = new CourseSession("ENGL", "101",
-                new DateUtil().createDate(2003, 1, 6));
+    @Test
+	public void testRosterReport()  {
+        Session session = CourseSession.create(new Course("ENGL", "101"),
+                DateUtil.createDate(2003, 1, 6));
 
         session.enroll(new Student("A"));
         session.enroll(new Student("B"));
@@ -18,7 +22,7 @@ public class RosterReporterTest extends TestCase {
             "A" + RosterReporter.NEWLINE +
             "B" + RosterReporter.NEWLINE +
             RosterReporter.ROSTER_REPORT_FOOTER +
-            "2\n", rosterReport);
+            "2" + RosterReporter.NEWLINE, rosterReport);
     }
 
 }
